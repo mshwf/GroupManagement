@@ -14,6 +14,7 @@ namespace GroupManagement.Web
     {
         public static void Main(string[] args)
         {
+            Console.WriteLine("Hello Core!");
             CreateWebHostBuilder(args).Build().Run();
         }
 

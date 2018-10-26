@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <style>
-        #home {
+        #baseBtn {
             background: #4e84c6;
             color: white;
             margin: 5px;
@@ -22,12 +22,34 @@
         #content{
             margin:10px;
         }
+        button {
+            border: dotted red 2px;
+            -moz-border-radius: 2px;
+            -webkit-border-radius: 2px;
+            border-radius: 25px 10px;
+            padding: 5px;
+            -moz-transition: background-color 500ms ease-in 1s;
+            -o-transition: background-color 500ms ease-in 1s;
+            -webkit-transition: background-color 500ms ease-in 1s;
+            transition: background-color 500ms ease-in .01s;
+        }
+        button:hover{
+            background-color:yellow;
+        }
+      td{
+          padding:5px;
+      }
+      thead{
+          border:solid red 20px;
+          border-radius:10px;
+      }
     </style>
 </head>
 <body>
     <nav>
         <div id="navContainer">
-            <a id="home" asp-action="Index">Home</a>
+            <a id="baseBtn" asp-action="Index">Home</a>
+            <a id="baseBtn" href="/routes" target="_blank">Routes</a>
         </div>
     </nav>
     <div id="content">

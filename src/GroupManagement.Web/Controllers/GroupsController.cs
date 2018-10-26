@@ -1,4 +1,5 @@
 ﻿using GroupManagement.Web.Models;
+using GroupManagement.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,20 +8,25 @@ using System.Threading.Tasks;
 namespace GroupManagement.Web.Controllers
 {
     //http://localhost:5000/Groups
-    [Route("Groups")]
+    //[Route("Groups")]
     public class GroupsController : Controller
     {
-        //private int CurrentId = 1;
-        private static List<GroupViewModel> Groups = new List<GroupViewModel> {
-            new GroupViewModel { Id = 1, Name = "Sample Group"},
-            new GroupViewModel { Id = 2, Name = "Sample Group2"}
+        private IGenerateId generateId;
+        public GroupsController(IGenerateId _generateId)
+        {
+            generateId = _generateId;
+        }
+        private static List<GroupViewModel> Groups = new List<GroupViewModel>
+        {
+            new GroupViewModel { Id = 1, Name = "Group 1"},
+            new GroupViewModel { Id = 2, Name = "Group 2"}
         };
-        [Route("Index")]
+        //[Route("Index")]
         public IActionResult Index()
         {
             return View(Groups);
         }
-        [Route("Edit/{groupId}"),HttpGet]
+        [Route("Edit/{groupId}"), HttpGet]
         public IActionResult Edit(int groupId)
         {
             var group = Groups.SingleOrDefault(g => g.Id == groupId);
@@ -47,7 +53,7 @@ namespace GroupManagement.Web.Controllers
         [HttpPost, Route("Create")]
         public IActionResult Create(GroupViewModel model)
         {
-            model.Id = Groups.Max(x => x.Id) + 1;
+            model.Id = generateId.Next();
             Groups.Add(model);
             return RedirectToAction("Index");
         }

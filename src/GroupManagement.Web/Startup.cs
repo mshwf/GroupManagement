@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AspNetCore.RouteAnalyzer;
+﻿using AspNetCore.RouteAnalyzer;
+using GroupManagement.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace GroupManagement.Web
 {
@@ -18,6 +19,7 @@ namespace GroupManagement.Web
         {
             services.AddMvc();
             services.AddRouteAnalyzer(); // Add
+            services.AddSingleton<IGenerateId, GenerateId>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -27,10 +29,26 @@ namespace GroupManagement.Web
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.Use(async (context, next) =>
+            {
+                context.Response.OnStarting(() =>
+                {
+                    context.Response.Headers.Add("x-Pby", "mshwf");
+                    return Task.CompletedTask;
+                });
+                if (!context.Request.Path.Value.EndsWith("1"))
+                {
+                    await next.Invoke();
+                }
+            });
+            app.UseStaticFiles();
             app.UseMvc(routes =>
             {
-                routes.MapRouteAnalyzer("/routes"); 
-    });
+                //routes.MapRouteAnalyzer("/routes");
+                routes.MapRoute(
+                    name: "default", template: "{controller=Groups}/{action=Index}"
+                    );
+            });
             //app.Run(async (context) =>
             //{
             //    await context.Response.WriteAsync("Hello World!");

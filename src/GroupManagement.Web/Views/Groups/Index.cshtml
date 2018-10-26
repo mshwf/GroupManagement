@@ -1,7 +1,28 @@
 ﻿@model IEnumerable<GroupViewModel>
-<ul>
-    @foreach (var group in Model)
-    {
-        <li>@group.Name <a asp-controller="Groups" asp-action="Edit" asp-route-groupId="@group.Id">Edit</a></li>
-    }
-</ul>
+<div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <td>Group Name</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var group in Model)
+                {
+                    <tr style="background-color:antiquewhite;">
+                        <td>@group.Name</td>
+                        <td>
+                            <a asp-controller="Groups" asp-action="Edit" asp-route-groupId="@group.Id">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <hr/>
+    <div>
+        <a id="baseBtn" asp-controller="Groups" asp-action="Create">Create New</a>
+    </div>
+</div>
