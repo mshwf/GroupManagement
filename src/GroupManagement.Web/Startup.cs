@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCore.RouteAnalyzer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -16,6 +17,7 @@ namespace GroupManagement.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddRouteAnalyzer(); // Add
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -25,7 +27,10 @@ namespace GroupManagement.Web
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRouteAnalyzer("/routes"); 
+    });
             //app.Run(async (context) =>
             //{
             //    await context.Response.WriteAsync("Hello World!");

@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D638FDC2-8915-4810-9D59-D28E55A10B9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupManagement.Web", "src\GroupManagement.Web\GroupManagement.Web.csproj", "{206F1722-8E68-44FE-875D-DD302AF74B4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupManagement.Web", "src\GroupManagement.Web\GroupManagement.Web.csproj", "{206F1722-8E68-44FE-875D-DD302AF74B4A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{206F1722-8E68-44FE-875D-DD302AF74B4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -33,7 +30,13 @@ Global
 		{206F1722-8E68-44FE-875D-DD302AF74B4A}.Release|x86.ActiveCfg = Release|Any CPU
 		{206F1722-8E68-44FE-875D-DD302AF74B4A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{206F1722-8E68-44FE-875D-DD302AF74B4A} = {D638FDC2-8915-4810-9D59-D28E55A10B9B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DB2AA5C6-18CE-4477-9B62-2B3963926DA3}
 	EndGlobalSection
 EndGlobal
