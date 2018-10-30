@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace GroupManagement.Web.Controllers
 {
     //http://localhost:5000/Groups
-    //[Route("Groups")]
+    [Route("Groups")]
     public class GroupsController : Controller
     {
         private IGenerateId generateId;
@@ -16,16 +16,19 @@ namespace GroupManagement.Web.Controllers
         {
             generateId = _generateId;
         }
+
         private static List<GroupViewModel> Groups = new List<GroupViewModel>
         {
             new GroupViewModel { Id = 1, Name = "Group 1"},
             new GroupViewModel { Id = 2, Name = "Group 2"}
         };
-        //[Route("Index")]
+
+        [Route("Index")]
         public IActionResult Index()
         {
             return View(Groups);
         }
+
         [Route("Edit/{groupId}"), HttpGet]
         public IActionResult Edit(int groupId)
         {
@@ -50,6 +53,7 @@ namespace GroupManagement.Web.Controllers
         {
             return View();
         }
+
         [HttpPost, Route("Create")]
         public IActionResult Create(GroupViewModel model)
         {

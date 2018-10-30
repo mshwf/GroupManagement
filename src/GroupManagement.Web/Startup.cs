@@ -44,7 +44,7 @@ namespace GroupManagement.Web
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {
-                //routes.MapRouteAnalyzer("/routes");
+                routes.MapRouteAnalyzer("/routes");
                 routes.MapRoute(
                     name: "default", template: "{controller=Groups}/{action=Index}"
                     );
