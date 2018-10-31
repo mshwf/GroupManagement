@@ -38,10 +38,10 @@ namespace GroupManagement.Web.Controllers
             return View(group);
         }
 
-        [Route("Edit/{id}"), ValidateAntiForgeryToken, HttpPost]
-        public IActionResult Edit(int id, GroupViewModel model)
+        [Route("Edit/{groupId}"), ValidateAntiForgeryToken, HttpPost]
+        public IActionResult Edit(int groupId, GroupViewModel model)
         {
-            var group = Groups.SingleOrDefault(g => g.Id == id);
+            var group = Groups.SingleOrDefault(g => g.Id == groupId);
             if (group == null)
                 return NotFound();
             group.Name = model.Name;
